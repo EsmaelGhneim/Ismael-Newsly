@@ -1,7 +1,5 @@
-package com.example.ismael;
+package com.example.ismael.fragments;
 
-
-import static com.example.ismael.R.id.recyclerView;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
@@ -13,6 +11,11 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.ismael.database.DBHelperNews;
+import com.example.ismael.item.Item;
+import com.example.ismael.adapters.ItemAdapter;
+import com.example.ismael.R;
 
 import java.util.List;
 

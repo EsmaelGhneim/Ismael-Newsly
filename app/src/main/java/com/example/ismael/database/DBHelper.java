@@ -1,4 +1,4 @@
-package com.example.ismael;
+package com.example.ismael.database;
 
 import android.content.ContentValues;
 import android.content.Context;

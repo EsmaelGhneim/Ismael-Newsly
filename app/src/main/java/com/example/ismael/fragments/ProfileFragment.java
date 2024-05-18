@@ -1,4 +1,4 @@
-package com.example.ismael;
+package com.example.ismael.fragments;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
@@ -12,7 +12,10 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+
+import com.example.ismael.database.DBHelper;
 import com.example.ismael.R;
+import com.example.ismael.activities.MainActivity;
 
 public class ProfileFragment extends Fragment {
 

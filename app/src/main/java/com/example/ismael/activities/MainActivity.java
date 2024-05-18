@@ -1,4 +1,4 @@
-package com.example.ismael;
+package com.example.ismael.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -10,6 +10,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.ismael.database.DBHelper;
+import com.example.ismael.R;
 
 
 public class MainActivity extends AppCompatActivity {

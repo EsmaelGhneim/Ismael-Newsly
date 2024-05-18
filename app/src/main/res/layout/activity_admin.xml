@@ -6,7 +6,7 @@
     android:background="@color/blu"
     android:orientation="vertical"
     android:padding="16dp"
-    tools:context=".AdminActivity">
+    tools:context=".activities.AdminActivity">
 
     <!-- Logout Button -->
     <Button
@@ -32,5 +32,14 @@
         android:text="Delete news" />
 
     <!-- Add other views and components as needed -->
+
+    <!-- not needed but may be a good addition -->
+
+    <Button
+        android:id="@+id/showUsersButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/pink"
+        android:text="Show Users" />
 
 </LinearLayout>

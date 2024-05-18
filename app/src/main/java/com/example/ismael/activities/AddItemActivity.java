@@ -1,4 +1,4 @@
-package com.example.ismael;
+package com.example.ismael.activities;
 
 import android.app.Activity;
 import android.content.ContentResolver;
@@ -30,6 +30,9 @@ import java.util.Locale;
 
 import android.Manifest;
 
+import com.example.ismael.database.DBHelperNews;
+import com.example.ismael.R;
+
 public class AddItemActivity extends AppCompatActivity {
 
     private static final int REQUEST_IMAGE = 1;
@@ -52,7 +55,7 @@ public class AddItemActivity extends AppCompatActivity {
         titleEditText = findViewById(R.id.titleEditText);
         descriptionEditText = findViewById(R.id.descriptionEditText);
         addButton = findViewById(R.id.addButton);
-        requestPermissions();
+        //requestPermissions();
 
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override

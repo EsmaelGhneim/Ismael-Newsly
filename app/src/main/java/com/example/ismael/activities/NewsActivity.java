@@ -1,8 +1,10 @@
-package com.example.ismael;
+package com.example.ismael.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.example.ismael.R;
 
 public class NewsActivity extends AppCompatActivity {
 

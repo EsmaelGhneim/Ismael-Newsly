@@ -1,4 +1,4 @@
-package com.example.ismael;
+package com.example.ismael.activities;
 
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,6 +10,8 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+
+import com.example.ismael.R;
 
 public class AdminActivity extends AppCompatActivity {
 
@@ -24,6 +26,8 @@ public class AdminActivity extends AppCompatActivity {
         Button logoutButton = findViewById(R.id.logoutButton);
         Button addNewsButton = findViewById(R.id.addNewsButton);
         Button delete = findViewById(R.id.Delete);
+        Button users = findViewById(R.id.showUsersButton);
+
         sharedPreferences = getSharedPreferences("MYPREFS", Context.MODE_PRIVATE);
 
         logoutButton.setOnClickListener(new View.OnClickListener() {
@@ -43,6 +47,14 @@ public class AdminActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent loginIntent = new Intent(AdminActivity.this, DeleteItemActivity.class);
+                startActivity(loginIntent);
+            }
+        });
+
+        users.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent loginIntent = new Intent(AdminActivity.this, ShowUsersActivity.class);
                 startActivity(loginIntent);
             }
         });

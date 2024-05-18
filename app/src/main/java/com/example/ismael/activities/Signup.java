@@ -1,4 +1,4 @@
-package com.example.ismael;
+package com.example.ismael.activities;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -9,6 +9,9 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.ismael.database.DBHelper;
+import com.example.ismael.R;
 
 public class Signup extends AppCompatActivity {
     @Override

@@ -1,4 +1,4 @@
-package com.example.ismael;
+package com.example.ismael.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -12,6 +12,11 @@ import android.widget.Toast;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.ismael.database.DBHelperNews;
+import com.example.ismael.item.Item;
+import com.example.ismael.adapters.ItemAdapter;
+import com.example.ismael.R;
 
 import java.util.ArrayList;
 import java.util.Iterator;

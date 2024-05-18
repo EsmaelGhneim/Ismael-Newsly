@@ -1,4 +1,4 @@
-package com.example.ismael;
+package com.example.ismael.activities;
 
 
 
@@ -9,6 +9,11 @@ import android.widget.RelativeLayout;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+
+import com.example.ismael.fragments.MainFragment;
+import com.example.ismael.fragments.ProfileFragment;
+import com.example.ismael.R;
+import com.example.ismael.fragments.SearchFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class DisplayActivity extends AppCompatActivity {

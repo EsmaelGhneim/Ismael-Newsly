@@ -1,4 +1,4 @@
-package com.example.ismael;
+package com.example.ismael.adapters;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -13,6 +13,9 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.ismael.item.Item;
+import com.example.ismael.R;
+import com.example.ismael.activities.NewsItemActivity;
 
 import java.io.File;
 import java.util.List;

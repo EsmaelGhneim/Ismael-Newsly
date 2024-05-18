@@ -1,4 +1,4 @@
-package com.example.ismael;
+package com.example.ismael.item;
 
 public class Item {
     private int id;
