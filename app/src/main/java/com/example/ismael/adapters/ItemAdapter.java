@@ -17,6 +17,7 @@ import com.bumptech.glide.Glide;
 import com.example.ismael.item.Item;
 import com.example.ismael.R;
 import com.example.ismael.activities.NewsItemActivity;
+import com.squareup.picasso.Picasso;
 
 import java.io.File;
 import java.util.List;
@@ -61,23 +62,24 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
 
         // Load the image using the image path
         String imagePath = item.getImagePath();
-
-            if (imagePath != null && !imagePath.isEmpty()) {
-                File imageFile = new File(imagePath);
-                if (imageFile.exists()) {
-                    Glide.with(context).load(item.getImagePath()).centerCrop().placeholder(R.drawable.img1).error(R.drawable.img1).into(holder.photoImageView);
-                    // loads the item's image using Glide library if an image path is available
-                } else {
-                    // Image file does not exist, handle the error case
-                    holder.photoImageView.setImageResource(R.drawable.img1);
-                }
+        if (imagePath != null && !imagePath.isEmpty()) {
+            File imageFile = new File(imagePath);
+            if (imageFile.exists()) {
+                Glide.with(context)
+                        .load(item.getImagePath())
+                        .centerCrop()
+                        .placeholder(R.drawable.img1) // Placeholder image while loading
+                        .error(R.drawable.img1) // Error image if loading fails
+                        .into(holder.photoImageView);
             } else {
-                // Image path is null or empty, handle the error case
+                // Image file does not exist, handle the error case
                 holder.photoImageView.setImageResource(R.drawable.img1);
             }
+        } else {
+            // Image path is null or empty, handle the error case
+            holder.photoImageView.setImageResource(R.drawable.img1);
+        }
     }
-
-
 
 
     @Override

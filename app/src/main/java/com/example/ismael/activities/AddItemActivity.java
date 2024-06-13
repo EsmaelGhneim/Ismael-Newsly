@@ -212,10 +212,14 @@ public class AddItemActivity extends AppCompatActivity {
             return;
         }
 
-        if (imagePath != null) {
+        if (selectedImageUri != null) {
             // Save the item using DBHelperNews
             DBHelperNews dbHelper = new DBHelperNews(this);
-            dbHelper.addItem(title, description, imagePath);
+            dbHelper.addItem(title, description, selectedImageUri.toString());
+            dbHelper.close();
+        }else {
+            DBHelperNews dbHelper = new DBHelperNews(this);
+            dbHelper.addItem(title, description, "");
             dbHelper.close();
         }
 
