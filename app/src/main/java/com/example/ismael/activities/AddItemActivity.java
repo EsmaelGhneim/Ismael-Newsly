@@ -30,8 +30,8 @@ import java.util.Locale;
 
 import android.Manifest;
 
-import com.example.ismael.database.DBHelperNews;
 import com.example.ismael.R;
+import com.example.ismael.database.DBHelperNews;
 
 public class AddItemActivity extends AppCompatActivity {
 
@@ -47,7 +47,6 @@ public class AddItemActivity extends AppCompatActivity {
     private String imagePath;
 
     @Override
-    //It's used to set up the activity, such as defining the user interface (UI) by setting the content view, and initializing any components
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_item);
@@ -76,7 +75,6 @@ public class AddItemActivity extends AppCompatActivity {
     }
 
     private void requestPermissions() {
-        //Ensures the app has permission to access storage and use the camera.
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED ||
                     checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED ||
@@ -90,9 +88,7 @@ public class AddItemActivity extends AppCompatActivity {
         }
     }
 
-    // TODO : check permissions
     @Override
-    //Checks if the permissions were granted and shows a message if not.
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == PERMISSION_REQUEST_CODE) {
@@ -107,7 +103,6 @@ public class AddItemActivity extends AppCompatActivity {
         }
     }
     private void chooseImageSource() {
-        //Opens a dialog for the user to choose between selecting an image from the gallery or taking a new photo.
         Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, false);
         intent.setType("image/*");
@@ -121,7 +116,6 @@ public class AddItemActivity extends AppCompatActivity {
     }
 
     private void captureImage() {
-        //Captures an image using the camera and saves it to a file.
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         if (intent.resolveActivity(getPackageManager()) != null) {
             File photoFile = createImageFile();
@@ -134,7 +128,6 @@ public class AddItemActivity extends AppCompatActivity {
     }
 
     private File createImageFile() {
-        //Creates a temporary file to store the captured image.
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(new Date());
         String imageFileName = "IMG_" + timeStamp + "_";
         File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
@@ -149,7 +142,6 @@ public class AddItemActivity extends AppCompatActivity {
     }
 
     @Override
-    //Retrieves and displays the selected or captured image.
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
@@ -172,14 +164,11 @@ public class AddItemActivity extends AppCompatActivity {
     }
 
     private Uri getImageUri(Bitmap bitmap) {
-        //Converts a Bitmap image to a URI
-        //Helps in displaying the captured image.
         String path = MediaStore.Images.Media.insertImage(getContentResolver(), bitmap, "Title", null);
         return Uri.parse(path);
     }
 
     private String getRealPathFromUri(Uri uri) {
-        //Converts URI to a file path to save and access the image.
         String[] projection = { MediaStore.Images.Media.DATA };
         ContentResolver contentResolver = getContentResolver();
         Cursor cursor = contentResolver.query(uri, projection, null, null, null);
@@ -193,7 +182,6 @@ public class AddItemActivity extends AppCompatActivity {
     }
 
     private void displayImage(Uri imageUri) {
-        //Displays the selected or captured image in the image view.
         try {
             Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), imageUri);
             imageView.setImageBitmap(bitmap);
@@ -203,7 +191,6 @@ public class AddItemActivity extends AppCompatActivity {
     }
 
     private void saveItem() {
-        //Stores the new item (including the title, description, and image path.)in the database and closes the activity.
         String title = titleEditText.getText().toString();
         String description = descriptionEditText.getText().toString();
 
@@ -212,14 +199,10 @@ public class AddItemActivity extends AppCompatActivity {
             return;
         }
 
-        if (selectedImageUri != null) {
+        if (imagePath != null) {
             // Save the item using DBHelperNews
             DBHelperNews dbHelper = new DBHelperNews(this);
-            dbHelper.addItem(title, description, selectedImageUri.toString());
-            dbHelper.close();
-        }else {
-            DBHelperNews dbHelper = new DBHelperNews(this);
-            dbHelper.addItem(title, description, "");
+            dbHelper.addItem(title, description, imagePath);
             dbHelper.close();
         }
 
