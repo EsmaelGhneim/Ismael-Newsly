@@ -38,14 +38,17 @@ public class Signup extends AppCompatActivity {
                 // Add User to the SQL Database!
                 {DBHelper dbHelper = new DBHelper(getApplicationContext());
                 dbHelper.addUser(newuser, newpass, newmail);
+                // adds the new user to the SQL database using the DBHelper class.
                 SharedPreferences.Editor editor = preferences.edit();
                 editor.putString("newuser", newuser);
                 editor.putString("newpass", newpass);
                 editor.apply();
+                //saves the new username and password in SharedPreferences.
                 Intent loginscreen = new Intent(Signup.this, MainActivity.class);
                 startActivity(loginscreen);}
                 else
                     Toast.makeText(Signup.this,"please insert your infromation",Toast.LENGTH_SHORT).show();
+                //If any of the fields are empty, it displays a toast message
 
             }
 

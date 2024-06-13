@@ -48,55 +48,65 @@ public class DeleteItemActivity extends AppCompatActivity {
         itemList = dbHelper.getAllItems();
         dbHelper.close();
 
-        filteredList = new ArrayList<>(itemList);
+        if(itemList!=null && !itemList.isEmpty()) {
 
-        searchEditText.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            }
+            filteredList = new ArrayList<>(itemList);
 
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                query = s.toString();
-                filterItems(query);
-            }
+            System.out.println(itemList.get(0).getImagePath());
 
-            @Override
-            public void afterTextChanged(Editable s) {
-            }
-        });
+            searchEditText.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                }
 
-        deleteButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                deleteVisibleItems();
-            }
-        });
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+                    query = s.toString();
+                    filterItems(query);
+                }
 
-        // Set up RecyclerView
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new ItemAdapter(filteredList);
-        recyclerView.setAdapter(adapter);
+                @Override
+                public void afterTextChanged(Editable s) {
+                }
+            });
+
+            deleteButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    deleteVisibleItems();
+                }
+            });
+
+            // Set up RecyclerView
+            recyclerView.setLayoutManager(new LinearLayoutManager(this));
+            adapter = new ItemAdapter(filteredList);
+            recyclerView.setAdapter(adapter);
+        }
     }
 
     private void filterItems(String query) {
+        //Filters the list of items based on the search query
         filteredList.clear();
 
         if (query.isEmpty()) {
             filteredList.addAll(itemList);
+            //If the query is empty, add all items to the filtered list.
         } else {
             for (Item item : itemList) {
                 if (item.getTitle().toLowerCase().contains(query.toLowerCase()) ) {
                     filteredList.add(item);
                 }
             }
+            //Otherwise, loop through all items and add those whose title contains the query.
         }
 
-        // Notify the adapter of the data changes
+        // Notify the adapter of the data changes so it can update the RecyclerView.
         adapter.notifyDataSetChanged();
+
     }
 
     private void deleteVisibleItems() {
+        //Deletes the items that are currently visible in the filtered list.
         Iterator<Item> iterator = filteredList.iterator();
         while (iterator.hasNext()) {
             Item item = iterator.next();
@@ -113,5 +123,11 @@ public class DeleteItemActivity extends AppCompatActivity {
         // Update the RecyclerView or refresh the data
         filterItems(query);
         finish();
+        //a toast message is shown to the user indicating that the visible items have been deleted.
+        //The comment suggests that you should update the RecyclerView or refresh the data to reflect the changes.
     }
 }
+ // extra explanation:
+//An Iterator in Java is an object that allows you to traverse through a collection (like an ArrayList, HashSet, etc.) one element at a time.
+// It provides methods to check if there are more elements (hasNext()),
+// retrieve the next element (next()), and remove elements from the collection (remove()).

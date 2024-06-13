@@ -45,17 +45,36 @@ public class DisplayActivity extends AppCompatActivity {
                     switch (item.getItemId()) {
                         case R.id.dashbord:
                             selectedFragment = new ProfileFragment();
+                            //If the dashboard item is selected, set selectedFragment to ProfileFragment.
                             break;
                         case R.id.users:
                             selectedFragment = new MainFragment();
+                            //If the users item is selected, set selectedFragment to MainFragment.
                             break;
                         case R.id.profile:
                             selectedFragment = new SearchFragment();
+                            //If the profile item is selected, set selectedFragment to SearchFragment.
                             break;
                     }
 
                     getSupportFragmentManager().beginTransaction().replace(R.id.relativelayout, selectedFragment).commit();
                     return true;
+                    //Replaces the current fragment in the RelativeLayout with the selected fragment.
                 }
             };
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

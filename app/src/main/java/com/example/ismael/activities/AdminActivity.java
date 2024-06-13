@@ -20,6 +20,7 @@ public class AdminActivity extends AppCompatActivity {
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //This onCreate method sets up the user interface for the activity and defines the behavior for four buttons
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin);
 
@@ -31,6 +32,7 @@ public class AdminActivity extends AppCompatActivity {
         sharedPreferences = getSharedPreferences("MYPREFS", Context.MODE_PRIVATE);
 
         logoutButton.setOnClickListener(new View.OnClickListener() {
+            //Logs the user out by calling the logout() method.
             @Override
             public void onClick(View view) {
                 logout();
@@ -38,12 +40,14 @@ public class AdminActivity extends AppCompatActivity {
         });
 
         addNewsButton.setOnClickListener(new View.OnClickListener() {
+            //Opens a new activity to add news by calling openAddNewsActivity()
             @Override
             public void onClick(View view) {
                 openAddNewsActivity();
             }
         });
         delete.setOnClickListener(new View.OnClickListener() {
+            //Opens an activity to delete items (DeleteItemActivity
             @Override
             public void onClick(View view) {
                 Intent loginIntent = new Intent(AdminActivity.this, DeleteItemActivity.class);
@@ -52,6 +56,7 @@ public class AdminActivity extends AppCompatActivity {
         });
 
         users.setOnClickListener(new View.OnClickListener() {
+            //Opens an activity to show users (ShowUsersActivity).
             @Override
             public void onClick(View view) {
                 Intent loginIntent = new Intent(AdminActivity.this, ShowUsersActivity.class);
@@ -66,11 +71,13 @@ public class AdminActivity extends AppCompatActivity {
         editor.clear();
         editor.apply();
         Intent loginIntent = new Intent(AdminActivity.this, MainActivity.class);
+        //An Intent is used to start a new activity.
         startActivity(loginIntent);
         finish();
     }
 
     private void openAddNewsActivity() {
+        // Opens the activity where the admin can add a news item.
         Intent addNewsIntent = new Intent(AdminActivity.this, AddItemActivity.class);
         startActivity(addNewsIntent);
     }

@@ -3,6 +3,7 @@ package com.example.ismael.adapters;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,8 +44,9 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
         Item item = itemList.get(position);
         holder.headerTextView.setText(item.getTitle());
         holder.descriptionTextView.setText(item.getDescription());
-// Inside your RecyclerView Adapter's onBindViewHolder method
+        // Inside your RecyclerView Adapter's onBindViewHolder method
         holder.itemView.setOnClickListener(new View.OnClickListener() {
+            //It binds data to the item views. Sets the title and description of each item.
             @Override
             public void onClick(View v) {
                 // Get the clicked item's ID
@@ -59,23 +61,20 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
 
         // Load the image using the image path
         String imagePath = item.getImagePath();
-        if (imagePath != null && !imagePath.isEmpty()) {
-            File imageFile = new File(imagePath);
-            if (imageFile.exists()) {
-                Glide.with(context)
-                        .load(item.getImagePath())
-                        .centerCrop()
-                        .placeholder(R.drawable.img1) // Placeholder image while loading
-                        .error(R.drawable.img1) // Error image if loading fails
-                        .into(holder.photoImageView);
+
+            if (imagePath != null && !imagePath.isEmpty()) {
+                File imageFile = new File(imagePath);
+                if (imageFile.exists()) {
+                    Glide.with(context).load(item.getImagePath()).centerCrop().placeholder(R.drawable.img1).error(R.drawable.img1).into(holder.photoImageView);
+                    // loads the item's image using Glide library if an image path is available
+                } else {
+                    // Image file does not exist, handle the error case
+                    holder.photoImageView.setImageResource(R.drawable.img1);
+                }
             } else {
-                // Image file does not exist, handle the error case
+                // Image path is null or empty, handle the error case
                 holder.photoImageView.setImageResource(R.drawable.img1);
             }
-        } else {
-            // Image path is null or empty, handle the error case
-            holder.photoImageView.setImageResource(R.drawable.img1);
-        }
     }
 
 
@@ -85,6 +84,8 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
     public int getItemCount() {
         return itemList.size();
     }
+    //It returns the total number of items in the list.
+
 
     public class ItemViewHolder extends RecyclerView.ViewHolder {
         ImageView photoImageView;
@@ -99,3 +100,6 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
         }
     }
 }
+// extra explanation
+//ItemAdapter is designed for more complex data structures and item layouts,
+// typically handling multiple attributes for each item (e.g., title, description, and image),.

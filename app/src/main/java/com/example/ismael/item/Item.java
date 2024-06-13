@@ -37,6 +37,7 @@ public class Item {
     public int getId() {
         return id;
     }
+    //Getter method for retrieving the ID of the item.s
 
     public String getTitle() {
         return title;

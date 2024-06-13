@@ -14,3 +14,4 @@ public class NewsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_news);
     }
 }
+//sets the layout for the  the news activity screen.

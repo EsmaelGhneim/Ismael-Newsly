@@ -64,3 +64,6 @@ public class ProfileFragment extends Fragment {
         return view;
     }
 }
+/*    extra explanation
+This fragment represents the user profile screen,
+ displaying the user's information retrieved from shared preferences and the local database         .*/

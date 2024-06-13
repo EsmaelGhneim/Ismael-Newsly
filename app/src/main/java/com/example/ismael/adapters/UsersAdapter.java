@@ -57,3 +57,5 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UserViewHold
     }
 
 }
+// very important- layout inflation
+//layout inflation is commonly used to dynamically create user interface components defined in XML files.

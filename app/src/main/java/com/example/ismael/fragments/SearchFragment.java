@@ -81,3 +81,4 @@ public class SearchFragment extends Fragment {
         recyclerView.setAdapter(adapter);
     }
 }
+//As the user types, the list of items displayed in the RecyclerView is dynamically filtered based on the search query.

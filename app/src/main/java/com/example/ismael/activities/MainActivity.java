@@ -64,11 +64,12 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(signup);
             }
         });
-
+          // if you get out of the app page it will automatically launch in the main activity and not go back to login page
         checkCredentials();
     }
 
     private void saveCredentials(String username, String password) {
+
         // save user in app files, shared preferences!
         SharedPreferences preferences = getSharedPreferences("MYPREFS", MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
@@ -78,12 +79,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void checkCredentials() {
+        //Checks saved credentials to determine if the user is already logged in.
         SharedPreferences preferences = getSharedPreferences("MYPREFS", MODE_PRIVATE);
         String savedUsername = preferences.getString(PREF_USERNAME, "");
         String savedPassword = preferences.getString(PREF_PASSWORD, "");
 
-        if (!savedUsername.isEmpty() && !savedPassword.isEmpty()) {
+        // TODO: trim check all places
+        if (!savedUsername.trim().isEmpty() && !savedPassword.trim().isEmpty()) {
+            //It checks if both the saved username and password are not empty
             if (savedUsername.equals(ADMIN_USERNAME) && savedPassword.equals(ADMIN_PASSWORD)) {
+                //If the saved username and password match the predefined admin credentials, it opens the admin activity.
                 openAdminActivity();
             } else {
                 DBHelper dbHelper = new DBHelper(getApplicationContext());
@@ -92,16 +97,20 @@ public class MainActivity extends AppCompatActivity {
                     openDisplayActivity();
                 }
             }
+            //It calls the checkUser method of DBHelper to check if the user exists in the database with the saved credentials.
         }
+        // TODO: what should IO give message if user credentials are incorrect
     }
 
     private void openAdminActivity() {
+        //Opens the AdminActivity for admin users.
         Intent adminIntent = new Intent(MainActivity.this, AdminActivity.class);
         startActivity(adminIntent);
         finish();
     }
 
     private void openDisplayActivity() {
+        //Opens the DisplayActivity for regular users.
         Intent displayIntent = new Intent(MainActivity.this, DisplayActivity.class);
         startActivity(displayIntent);
         finish();

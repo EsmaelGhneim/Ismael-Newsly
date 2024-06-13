@@ -35,6 +35,7 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
         onCreate(db);
     }
+    //Called when the database needs to be upgraded when the version number is incremented.
 
     public String getUserEmail(String username) {
         SQLiteDatabase db = getReadableDatabase();
@@ -76,6 +77,7 @@ public class DBHelper extends SQLiteOpenHelper {
         db.insert(TABLE_NAME, null, values);
         db.close();
     }
+    //Inserts a new row into the database table with the user's information.
 
     public boolean checkUser(String username, String password) {
         SQLiteDatabase db = getReadableDatabase();
@@ -93,6 +95,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 null,
                 null
         );
+        //Compares the fetched password with the provided password and returns true if they match, indicating a valid user.
 
         if (cursor.moveToFirst()) {
             String savedPassword = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_PASSWORD));
@@ -126,6 +129,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
         return usernames;
     }
+    //Returns a list of usernames as strings
 
     public void updatePassword(String username, String newPassword) {
         SQLiteDatabase db = getWritableDatabase();
@@ -139,6 +143,7 @@ public class DBHelper extends SQLiteOpenHelper {
         db.update(TABLE_NAME, values, selection, selectionArgs);
         db.close();
     }
+    //Updates the password for the user with the provided username.
 
     public void updateUserEmail(String username, String newEmail) {
         SQLiteDatabase db = getWritableDatabase();
@@ -152,6 +157,7 @@ public class DBHelper extends SQLiteOpenHelper {
         db.update(TABLE_NAME, values, selection, selectionArgs);
         db.close();
     }
+    //Updates the email for the user with the provided username.
 
     public void deleteUser(String username) {
         SQLiteDatabase db = getWritableDatabase();
@@ -162,6 +168,7 @@ public class DBHelper extends SQLiteOpenHelper {
         db.delete(TABLE_NAME, selection, selectionArgs);
         db.close();
     }
+    //Deletes the user with the provided username from the database.
 }
 
 

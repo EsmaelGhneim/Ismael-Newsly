@@ -49,6 +49,7 @@ public class DBHelperNews extends SQLiteOpenHelper {
 
     @SuppressLint("Range")
     public Item getItemById(int id) {
+        //Retrieves a specific news item from the database based on the given ID.
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.query(TABLE_NAME, null, COLUMN_ID + "=?",
                 new String[]{String.valueOf(id)}, null, null, null, null);
@@ -63,6 +64,7 @@ public class DBHelperNews extends SQLiteOpenHelper {
             cursor.close();
         }
 
+
         db.close();
 
         return item;
@@ -70,6 +72,7 @@ public class DBHelperNews extends SQLiteOpenHelper {
 
 
     public void addItem(String title, String description, String imagePath) {
+        //Adds a new news item to the database with the provided title, description, and image path.
         SQLiteDatabase db = getWritableDatabase();
 
         ContentValues values = new ContentValues();
@@ -82,6 +85,7 @@ public class DBHelperNews extends SQLiteOpenHelper {
     }
 
     public void deleteItem(int itemId) {
+        //Deletes the news item with the specified ID from the database.
         SQLiteDatabase db = getWritableDatabase();
         db.delete(TABLE_NAME, COLUMN_ID + " = ?", new String[]{String.valueOf(itemId)});
     }
@@ -104,6 +108,8 @@ public List<Item> getAllItems() {
             itemList.add(item);
         } while (cursor.moveToNext());
     }
+    //Iterates over the cursor to create Item objects for each row and adds them to a list.
+    //Returns a list of Item objects containing all news items.
 
     cursor.close();
     db.close();

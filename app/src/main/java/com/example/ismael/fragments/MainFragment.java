@@ -45,3 +45,7 @@ public class MainFragment extends Fragment {
         return view;
     }
 }
+//extra explanation
+//This fragment is responsible for displaying a list of news items in a RecyclerView.
+// It fetches the news items from the local database using the DBHelperNews class and
+// populates the RecyclerView with them using an adapter(item adapter)

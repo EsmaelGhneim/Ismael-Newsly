@@ -14,6 +14,7 @@ import com.example.ismael.R;
 import java.io.File;
 
 public class NewsItemActivity extends AppCompatActivity {
+
     private int newsId;
     private Item newsItem;
 
@@ -53,6 +54,8 @@ public class NewsItemActivity extends AppCompatActivity {
                             .placeholder(R.drawable.img1)
                             .error(R.drawable.img1)
                             .into(newsImageView);
+
+                    //Loads the image of the news item into the ImageView (newsImageView) using Glide library.
                 } else {
                     // Image file does not exist, handle the error case
                     newsImageView.setImageResource(R.drawable.img1);
@@ -60,7 +63,9 @@ public class NewsItemActivity extends AppCompatActivity {
             } else {
                 // Image path is null or empty, handle the error case
                 newsImageView.setImageResource(R.drawable.img1);
+
             }
+            //Handles cases where the image path is null, empty, or the image file does not exist by displaying a placeholder image
         }
     }
 }

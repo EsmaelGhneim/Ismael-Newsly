@@ -39,3 +39,8 @@ public class ShowUsersActivity extends AppCompatActivity {
 
     }
 }
+
+
+
+// extra explanation
+//This class is responsible for displaying the list of usernames in the activity_show_users layout using a RecyclerView.
